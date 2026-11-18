@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Schiero? • Fantacalcio Tool</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+            .back-link:hover {
+                color: #38bdf8;
+            }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+            h1 span {
+                color: #38bdf8;
+            }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .player-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .player-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input, select {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px;
+            color: #f8fafc;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+            input:focus, select:focus {
+                border-color: #38bdf8;
+            }
+
+        .btn-calc {
+            width: 100%;
+            background-color: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+            .btn-calc:hover {
+                background-color: #0ea5e9;
+            }
+
+            .btn-calc:active {
+                transform: scale(0.98);
+            }
+
+        .result-box {
+            display: none;
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #38bdf8;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .winner-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .winner-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+
+        .winner-desc {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: auto;
+            padding-top: 30px;
+            font-size: 0.8rem;
+            color: #64748b;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="../" class="back-link">← Torna alla Hub</a>
+
+        <div class="header">
+            <h1>Chi <span>Schiero?</span></h1>
+            <p class="subtitle">Risolvi il dubbio amletico del ballottaggio in un click.</p>
+        </div>
+
+        <div class="card">
+            <div class="player-inputs">
+                <div class="input-group">
+                    <label for="playerA">Giocatore A</label>
+                    <input type="text" id="playerA" placeholder="Es. Retegui">
+                    <select id="matchA">
+                        <option value="home">Gioca in Casa (Fattore campo +)</option>
+                        <option value="away">Gioca Fuori Casa</option>
+                    </select>
+                    <select id="diffA">
+                        <option value="easy">Avversario Facile (Zona salvezza)</option>
+                        <option value="medium" selected>Avversario Medio</option>
+                        <option value="hard">Avversario Difficile (Top Club)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="playerB">Giocatore B</label>
+                    <input type="text" id="playerB" placeholder="Es. Dovbyk">
+                    <select id="matchB">
+                        <option value="home">Gioca in Casa (Fattore campo +)</option>
+                        <option value="away" selected>Gioca Fuori Casa</option>
+                    </select>
+                    <select id="diffB">
+                        <option value="easy">Avversario Facile (Zona salvezza)</option>
+                        <option value="medium" selected>Avversario Medio</option>
+                        <option value="hard">Avversario Difficile (Top Club)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-calc" onclick="calcolaBallottaggio()">Consigliami chi schierare ⚽</button>
+        </div>
+
+        <div class="result-box" id="resultBox">
+            <div class="winner-title">Il verdetto dell'algoritmo</div>
+            <div class="winner-name" id="winnerText">-</div>
+            <div class="winner-desc" id="winnerDesc">-</div>
+        </div>
+    </div>
+
+    <footer>
+        Fantacalcio Tool Hub • Zero dubbi, solo +3
+    </footer>
+
+    <script>
+        function calcolaBallottaggio() {
+            const pA = document.getElementById('playerA').value.trim() || "Giocatore A";
+            const pB = document.getElementById('playerB').value.trim() || "Giocatore B";
+
+            const matchA = document.getElementById('matchA').value;
+            const matchB = document.getElementById('matchB').value;
+            const diffA = document.getElementById('diffA').value;
+            const diffB = document.getElementById('diffB').value;
+
+            let scoreA = 50;
+            let scoreB = 50;
+
+            // Punteggi fattore campo
+            if (matchA === 'home') scoreA += 10;
+            if (matchB === 'home') scoreB += 10;
+
+            // Punteggi difficoltà avversario
+            const diffScores = { easy: 20, medium: 10, hard: 0 };
+            scoreA += diffScores[diffA];
+            scoreB += diffScores[diffB];
+
+            // Aggiungiamo un pizzico di casualità realistica (fattore bonus imprevisto)
+            scoreA += Math.floor(Math.random() * 10);
+            scoreB += Math.floor(Math.random() * 10);
+
+            const resultBox = document.getElementById('resultBox');
+            const winnerName = document.getElementById('winnerText');
+            const winnerDesc = document.getElementById('winnerDesc');
+
+            resultBox.style.display = 'block';
+
+            if (scoreA >= scoreB) {
+                winnerName.innerText = `🔥 Schiera ${pA}!`;
+                winnerDesc.innerText = `${pA} ha combinato fattore campo e avversario più favorevoli rispetto a ${pB}. Mettilo titolare e non pensarci più.`;
+            } else {
+                winnerName.innerText = `🔥 Schiera ${pB}!`;
+                winnerDesc.innerText = `${pB} ha statistiche e condizioni di match migliori rispetto a ${pA}. Fidati dei dati e schieralo.`;
+            }
+
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
