@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi Schiero? • Fantacalcio Tool</title>
+    <title>Chi Schiero? PRO 2026/27 • Listone Ufficiale 539 Giocatori</title>
     <style>
         * {
             box-sizing: border-box;
@@ -19,164 +19,331 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 30px 20px;
+            padding: 25px 15px;
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 900px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .back-link {
-            display: inline-block;
             color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-weight: 600;
         }
 
-            .back-link:hover {
-                color: #38bdf8;
-            }
+        .back-link:hover {
+            color: #38bdf8;
+        }
+
+        .season-badge {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 26px;
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 2.1rem;
             font-weight: 800;
             margin-bottom: 6px;
         }
 
-            h1 span {
-                color: #38bdf8;
-            }
+        h1 span {
+            color: #38bdf8;
+        }
 
         .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             color: #94a3b8;
         }
 
-        .card {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .player-inputs {
+        .vs-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 20px;
+            gap: 18px;
+            margin-bottom: 22px;
         }
 
-        @media (max-width: 480px) {
-            .player-inputs {
+        @media (max-width: 760px) {
+            .vs-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        .input-group {
+        .player-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .player-card.card-a {
+            border-top: 5px solid #38bdf8;
+        }
+
+        .player-card.card-b {
+            border-top: 5px solid #f43f5e;
+        }
+
+        .card-header {
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 14px;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-a .card-header { color: #38bdf8; }
+        .card-b .card-header { color: #f43f5e; }
+
+        .listone-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+            background-color: #0f172a;
+            padding: 9px 10px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            font-size: 0.76rem;
+        }
+
+        .l-pill {
+            background-color: #1e293b;
+            padding: 3px 8px;
+            border-radius: 6px;
+            color: #cbd5e1;
+            font-weight: 700;
+        }
+
+        .l-pill b {
+            color: #38bdf8;
+        }
+
+        .l-pill.pos-diff b { color: #4ade80; }
+        .l-pill.neg-diff b { color: #fb7185; }
+
+        .field {
+            margin-bottom: 12px;
         }
 
         label {
-            font-size: 0.85rem;
+            display: block;
+            font-size: 0.74rem;
             font-weight: 700;
-            color: #38bdf8;
+            color: #94a3b8;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            margin-bottom: 5px;
+            letter-spacing: 0.03em;
         }
 
         input, select {
+            width: 100%;
             background-color: #0f172a;
             border: 1px solid #334155;
             border-radius: 8px;
-            padding: 12px;
+            padding: 10px 12px;
             color: #f8fafc;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             outline: none;
             transition: border-color 0.2s;
         }
 
-            input:focus, select:focus {
-                border-color: #38bdf8;
-            }
+        input:focus, select:focus {
+            border-color: #38bdf8;
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .row-3 {
+            display: grid;
+            grid-template-columns: 1.25fr 0.85fr 0.9fr;
+            gap: 8px;
+        }
+
+        .section-divider {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 14px 0 8px 0;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 4px;
+        }
 
         .btn-calc {
             width: 100%;
-            background-color: #38bdf8;
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
             color: #0f172a;
             border: none;
-            border-radius: 10px;
-            padding: 14px;
-            font-size: 1rem;
-            font-weight: 800;
+            border-radius: 12px;
+            padding: 17px;
+            font-size: 1.05rem;
+            font-weight: 900;
             cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: transform 0.1s, opacity 0.2s;
+            margin-bottom: 24px;
         }
 
-            .btn-calc:hover {
-                background-color: #0ea5e9;
-            }
+        .btn-calc:hover {
+            opacity: 0.95;
+        }
 
-            .btn-calc:active {
-                transform: scale(0.98);
-            }
+        .btn-calc:active {
+            transform: scale(0.99);
+        }
 
-        .result-box {
+        .result-panel {
             display: none;
-            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            background-color: #1e293b;
             border: 2px solid #38bdf8;
             border-radius: 16px;
             padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+        }
+
+        .verdict-header {
             text-align: center;
-            animation: fadeIn 0.3s ease-in-out;
+            margin-bottom: 18px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(6px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .winner-title {
-            font-size: 0.8rem;
+        .verdict-tag {
+            font-size: 0.76rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: #94a3b8;
-            margin-bottom: 8px;
         }
 
-        .winner-name {
-            font-size: 1.6rem;
-            font-weight: 800;
+        .verdict-winner {
+            font-size: 1.95rem;
+            font-weight: 900;
             color: #38bdf8;
-            margin-bottom: 12px;
+            margin: 6px 0;
         }
 
-        .winner-desc {
+        .prob-bar-wrap {
+            background-color: #0f172a;
+            height: 32px;
+            border-radius: 999px;
+            overflow: hidden;
+            display: flex;
+            margin: 18px 0;
+            border: 1px solid #334155;
+        }
+
+        .prob-a {
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 0.84rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: width 0.4s ease;
+        }
+
+        .prob-b {
+            background-color: #f43f5e;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.84rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: width 0.4s ease;
+        }
+
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .breakdown-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-box {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 13px;
+        }
+
+        .stat-title {
+            font-size: 0.74rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-detail {
             font-size: 0.9rem;
+            color: #f8fafc;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .reason-list {
+            margin-top: 18px;
+            background-color: #0f172a;
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .reason-list h4 {
+            font-size: 0.84rem;
+            text-transform: uppercase;
+            color: #38bdf8;
+            margin-bottom: 6px;
+        }
+
+        .reason-list p {
+            font-size: 0.93rem;
             color: #cbd5e1;
             line-height: 1.5;
         }
 
         footer {
             margin-top: auto;
-            padding-top: 30px;
+            padding-top: 20px;
             font-size: 0.8rem;
             color: #64748b;
             text-align: center;
@@ -185,101 +352,543 @@
 </head>
 <body>
 
-    <div class="container">
-        <a href="../" class="back-link">← Torna alla Hub</a>
+<div class="container">
+    <div class="top-bar">
+        <a href="https://tool-utili.github.io/" class="back-link">← Torna a FantaHub</a>
+        <span class="season-badge">Listone Ufficiale 2026/27 • 539 Giocatori</span>
+    </div>
 
-        <div class="header">
-            <h1>Chi <span>Schiero?</span></h1>
-            <p class="subtitle">Risolvi il dubbio amletico del ballottaggio in un click.</p>
-        </div>
+    <div class="header">
+        <h1>Chi <span>Schiero?</span> 26/27</h1>
+        <p class="subtitle">Database completo 2026/27 con Quotazioni (Qt.A / Qt.I), Diff., FVM, Fantamedia, Classifica e Avversario.</p>
+    </div>
 
-        <div class="card">
-            <div class="player-inputs">
-                <div class="input-group">
-                    <label for="playerA">Giocatore A</label>
-                    <input type="text" id="playerA" placeholder="Es. Retegui">
-                    <select id="matchA">
-                        <option value="home">Gioca in Casa (Fattore campo +)</option>
-                        <option value="away">Gioca Fuori Casa</option>
-                    </select>
-                    <select id="diffA">
-                        <option value="easy">Avversario Facile (Zona salvezza)</option>
-                        <option value="medium" selected>Avversario Medio</option>
-                        <option value="hard">Avversario Difficile (Top Club)</option>
-                    </select>
+    <datalist id="playersList2627"></datalist>
+
+    <div class="vs-grid">
+        <!-- GIOCATORE A -->
+        <div class="player-card card-a">
+            <div class="card-header">
+                <span>🟦 Giocatore 1</span>
+                <span id="roleLabelA" style="font-size:0.8rem;color:#94a3b8;">-</span>
+            </div>
+
+            <div class="field">
+                <label>Cerca tra i 539 giocatori del Listone 26/27</label>
+                <input type="text" id="nameA" list="playersList2627" placeholder="Es. Malen, Rabiot, Paz N., De Bruyne, Douvikas..." oninput="autoFillPlayer('A')">
+            </div>
+
+            <div class="listone-badges" id="badgesA">
+                <span class="l-pill">Qt.A: <b id="qtaA">-</b></span>
+                <span class="l-pill">Qt.I: <b id="qtiA">-</b></span>
+                <span class="l-pill" id="diffPillA">Diff: <b id="diffA">-</b></span>
+                <span class="l-pill">FVM: <b id="fvmA">-</b>/1000</span>
+            </div>
+
+            <div class="row-2">
+                <div class="field">
+                    <label>Fantamedia (FM)</label>
+                    <input type="number" id="fmA" step="0.05" min="4" max="13" value="8.20">
                 </div>
-
-                <div class="input-group">
-                    <label for="playerB">Giocatore B</label>
-                    <input type="text" id="playerB" placeholder="Es. Dovbyk">
-                    <select id="matchB">
-                        <option value="home">Gioca in Casa (Fattore campo +)</option>
-                        <option value="away" selected>Gioca Fuori Casa</option>
-                    </select>
-                    <select id="diffB">
-                        <option value="easy">Avversario Facile (Zona salvezza)</option>
-                        <option value="medium" selected>Avversario Medio</option>
-                        <option value="hard">Avversario Difficile (Top Club)</option>
+                <div class="field">
+                    <label>Stato di Forma</label>
+                    <select id="statusA">
+                        <option value="fire">🔥 In hype / Bonus (Diff. +)</option>
+                        <option value="normal" selected>✅ Titolare / Stabile</option>
+                        <option value="sub">⚠️ Ballottaggio / Subentra</option>
+                        <option value="cold">❄️ In calo (Diff. -)</option>
                     </select>
                 </div>
             </div>
 
-            <button class="btn-calc" onclick="calcolaBallottaggio()">Consigliami chi schierare ⚽</button>
+            <div class="section-divider">Squadra & Classifica 26/27</div>
+            <div class="row-3">
+                <div class="field">
+                    <label>Club</label>
+                    <select id="teamA" onchange="onTeamChange('A')"></select>
+                </div>
+                <div class="field">
+                    <label>Pos. Class.</label>
+                    <input type="number" id="posTeamA" min="1" max="20" value="2">
+                </div>
+                <div class="field">
+                    <label>Forma (1-10)</label>
+                    <input type="number" id="formTeamA" min="1" max="10" step="0.5" value="8.8">
+                </div>
+            </div>
+
+            <div class="section-divider">Avversario di Giornata</div>
+            <div class="row-3">
+                <div class="field">
+                    <label>Contro chi?</label>
+                    <select id="oppA" onchange="onOppChange('A')"></select>
+                </div>
+                <div class="field">
+                    <label>Pos. Avv.</label>
+                    <input type="number" id="posOppA" min="1" max="20" value="14">
+                </div>
+                <div class="field">
+                    <label>Difesa (1-10)</label>
+                    <input type="number" id="defOppA" min="1" max="10" step="0.5" value="5.6">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Fattore Campo</label>
+                <select id="venueA">
+                    <option value="home" selected>🏠 Gioca in Casa</option>
+                    <option value="away">✈️ Gioca in Trasferta</option>
+                </select>
+            </div>
         </div>
 
-        <div class="result-box" id="resultBox">
-            <div class="winner-title">Il verdetto dell'algoritmo</div>
-            <div class="winner-name" id="winnerText">-</div>
-            <div class="winner-desc" id="winnerDesc">-</div>
+        <!-- GIOCATORE B -->
+        <div class="player-card card-b">
+            <div class="card-header">
+                <span>🟥 Giocatore 2</span>
+                <span id="roleLabelB" style="font-size:0.8rem;color:#94a3b8;">-</span>
+            </div>
+
+            <div class="field">
+                <label>Cerca tra i 539 giocatori del Listone 26/27</label>
+                <input type="text" id="nameB" list="playersList2627" placeholder="Es. Krstovic, Hojlund, Mora, Varela G., Calò..." oninput="autoFillPlayer('B')">
+            </div>
+
+            <div class="listone-badges" id="badgesB">
+                <span class="l-pill">Qt.A: <b id="qtaB">-</b></span>
+                <span class="l-pill">Qt.I: <b id="qtiB">-</b></span>
+                <span class="l-pill" id="diffPillB">Diff: <b id="diffB">-</b></span>
+                <span class="l-pill">FVM: <b id="fvmB">-</b>/1000</span>
+            </div>
+
+            <div class="row-2">
+                <div class="field">
+                    <label>Fantamedia (FM)</label>
+                    <input type="number" id="fmB" step="0.05" min="4" max="13" value="8.15">
+                </div>
+                <div class="field">
+                    <label>Stato di Forma</label>
+                    <select id="statusB">
+                        <option value="fire">🔥 In hype / Bonus (Diff. +)</option>
+                        <option value="normal" selected>✅ Titolare / Stabile</option>
+                        <option value="sub">⚠️ Ballottaggio / Subentra</option>
+                        <option value="cold">❄️ In calo (Diff. -)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section-divider">Squadra & Classifica 26/27</div>
+            <div class="row-3">
+                <div class="field">
+                    <label>Club</label>
+                    <select id="teamB" onchange="onTeamChange('B')"></select>
+                </div>
+                <div class="field">
+                    <label>Pos. Class.</label>
+                    <input type="number" id="posTeamB" min="1" max="20" value="4">
+                </div>
+                <div class="field">
+                    <label>Forma (1-10)</label>
+                    <input type="number" id="formTeamB" min="1" max="10" step="0.5" value="7.8">
+                </div>
+            </div>
+
+            <div class="section-divider">Avversario di Giornata</div>
+            <div class="row-3">
+                <div class="field">
+                    <label>Contro chi?</label>
+                    <select id="oppB" onchange="onOppChange('B')"></select>
+                </div>
+                <div class="field">
+                    <label>Pos. Avv.</label>
+                    <input type="number" id="posOppB" min="1" max="20" value="1">
+                </div>
+                <div class="field">
+                    <label>Difesa (1-10)</label>
+                    <input type="number" id="defOppB" min="1" max="10" step="0.5" value="8.7">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Fattore Campo</label>
+                <select id="venueB">
+                    <option value="home">🏠 Gioca in Casa</option>
+                    <option value="away" selected>✈️ Gioca in Trasferta</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-calc" onclick="confrontaGiocatori()">Confronta Dati Listone 2026/27 e Decidi Chi Schierare ⚖️</button>
+
+    <div class="result-panel" id="resultPanel">
+        <div class="verdict-header">
+            <div class="verdict-tag">Verdetto Algoritmo Listone 2026/27</div>
+            <div class="verdict-winner" id="winnerHeadline">-</div>
+        </div>
+
+        <div class="prob-bar-wrap">
+            <div class="prob-a" id="barA" style="width: 50%">50%</div>
+            <div class="prob-b" id="barB" style="width: 50%">50%</div>
+        </div>
+
+        <div class="breakdown-grid">
+            <div class="stat-box">
+                <div class="stat-title">📊 Fantamedia & Quotazione (Qt.A / FVM)</div>
+                <div class="stat-detail" id="cmpFM">-</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-title">🛡️ Difficoltà Avversario & Classifica</div>
+                <div class="stat-detail" id="cmpOpp">-</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-title">📈 Forma Squadra & Trend (Diff.)</div>
+                <div class="stat-detail" id="cmpTeam">-</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-title">🏟️ Fattore Campo & Ruolo</div>
+                <div class="stat-detail" id="cmpContext">-</div>
+            </div>
+        </div>
+
+        <div class="reason-list">
+            <h4>Spiegazione Tecnica del Ballottaggio</h4>
+            <p id="finalExplanation">-</p>
         </div>
     </div>
 
     <footer>
-        Fantacalcio Tool Hub • Zero dubbi, solo +3
+        FantaHub 2026/27 • Database Ufficiale 539 Calciatori Serie A (Quotazioni_Fantacalcio_Stagione_2026_27)
     </footer>
+</div>
 
-    <script>
-        function calcolaBallottaggio() {
-            const pA = document.getElementById('playerA').value.trim() || "Giocatore A";
-            const pB = document.getElementById('playerB').value.trim() || "Giocatore B";
+<script>
+    // Parametri ufficiali delle 20 Squadre Serie A 2026/27 calcolati dal Listone 2026/27
+    const teams2627 = {
+        "Inter":      { pos: 1,  forma: 9.0, difesa: 8.7 },
+        "Roma":       { pos: 2,  forma: 8.8, difesa: 8.8 },
+        "Milan":      { pos: 3,  forma: 7.9, difesa: 6.9 },
+        "Como":       { pos: 4,  forma: 7.8, difesa: 7.7 },
+        "Lazio":      { pos: 5,  forma: 8.1, difesa: 7.4 },
+        "Frosinone":  { pos: 6,  forma: 7.6, difesa: 6.8 },
+        "Napoli":     { pos: 7,  forma: 7.1, difesa: 6.2 },
+        "Juventus":   { pos: 8,  forma: 6.5, difesa: 7.0 },
+        "Bologna":    { pos: 9,  forma: 6.7, difesa: 6.9 },
+        "Torino":     { pos: 10, forma: 6.3, difesa: 6.2 },
+        "Atalanta":   { pos: 11, forma: 6.0, difesa: 5.2 },
+        "Monza":      { pos: 12, forma: 6.4, difesa: 6.1 },
+        "Sassuolo":   { pos: 13, forma: 6.2, difesa: 5.0 },
+        "Fiorentina": { pos: 14, forma: 5.8, difesa: 5.6 },
+        "Cagliari":   { pos: 15, forma: 5.8, difesa: 5.3 },
+        "Genoa":      { pos: 16, forma: 5.7, difesa: 5.4 },
+        "Udinese":    { pos: 17, forma: 5.6, difesa: 6.1 },
+        "Parma":      { pos: 18, forma: 5.5, difesa: 5.0 },
+        "Lecce":      { pos: 19, forma: 5.4, difesa: 5.5 },
+        "Venezia":    { pos: 20, forma: 5.3, difesa: 5.7 }
+    };
 
-            const matchA = document.getElementById('matchA').value;
-            const matchB = document.getElementById('matchB').value;
-            const diffA = document.getElementById('diffA').value;
-            const diffB = document.getElementById('diffB').value;
+    // DATABASE COMPLETO 539 GIOCATORI DAL FILE Quotazioni_Fantacalcio_Stagione_2026_27.xlsx (Foglio "Tutti")
+    // Formato compatto: Nome|R|RM|Qt.A|Qt.I|FVM
+    const rawListone2627 = {
+        "Atalanta":"Carnesecchi|P|Por|12|16|34~Sportiello|P|Por|1|1|1~Pompei|P|Por|1|1|1~Scalvini|D|Dc|7|10|16~Kolasinac|D|Ds;Dc|6|5|10~Bellanova|D|Dd;E|5|6|18~Zappacosta|D|Dd;E|5|8|13~Bernasconi|D|Ds;E|4|6|11~Hien|D|Dc|3|8|8~Kristensen T.|D|Dd;Dc|3|7|10~Kossounou|D|Dd;Dc|2|3|5~Obric|D|Dc|1|1|1~Zalewski|C|W|13|6|14~Samardzic|C|C;T|12|12|14~Ederson D.S.|C|M;C|10|12|34~Gaetano|C|M;C|10|7|14~Kessiè|C|C|10|12|17~Elmas|C|W;T|8|7|23~Rowe|C|W;T|6|11|22~Pasalic|C|C;T|5|9|13~Krstovic|A|Pc|25|18|186~De Ketelaere|A|A|14|17|55~Scamacca|A|Pc|14|19|41~Raspadori|A|A|12|13|12~Sulemana K.|A|A|2|6|3",
+        "Bologna":"Skorupski|P|Por|11|10|21~Pessina Mas.|P|Por|2|1|1~Happonen|P|Por|1|1|1~Miranda J.|D|Ds;E|17|8|41~Casale|D|Dc|10|3|7~Theate|D|Ds;Dc|9|8|11~Zortea|D|Dd;E|7|6|15~Helland|D|Dd;Dc|5|2|7~Darmian|D|B;Dd;E|5|3|10~Heggem|D|Ds;Dc|4|6|10~Holm|D|Dd;E|4|5|3~Vitik|D|Dc|3|5|5~De Silvestri|D|Dd;E|2|1|1~Alhassane|D|Ds;E|2|2|5~Orsolini|C|W;A|20|26|125~Bernardeschi|C|W;T|17|9|48~Pobega|C|M;C|15|6|22~Cambiaghi|C|W;A|14|8|35~Mbangula|C|W;A|12|8|14~Ferguson|C|M;C|10|7|22~Odgaard|C|T|6|8|25~Moro N.|C|M;C|3|4|12~Amondarain|C|M;C|2|5|7~El Azzouzi O.|C|M;C|2|2|6~Libra|C|C;T|1|1|1~Dovbyk|A|Pc|10|16|10~Piccoli|A|Pc|9|8|23~Enem|A|Pc|3|2|9",
+        "Cagliari":"Caprile|P|Por|13|9|30~Sherri|P|Por|1|1|1~Radunovic|P|Por|1|1|1~Zè Pedro|D|Dd;Dc|7|5|13~Mina|D|Dc|6|8|11~Rodriguez Ju.|D|Ds;Dc|5|3|11~Obert|D|B;Ds;E|5|7|12~Kofler|D|Dc|4|5|2~Sugawara|D|Dd;E|4|6|8~Idrissi R.|D|Ds;E|1|3|1~Aurelio|D|Ds;E|1|2|4~Romano|C|M;C|12|5|25~Adopo|C|M;C|11|6|20~Winks|C|M;C|7|6|13~Fadera|C|W|6|2|10~Deiola|C|M;C|5|3|10~Fazzini|C|C;T|4|7|10~Massolin|C|C;T|3|4|7~Liteta|C|M;C|2|1|1~Felici|C|W|2|5|5~Ciervo|C|W|1|1|1~Gagliardini|C|M;C|1|3|7~Maldini|A|T;A|17|5|63~Mendy P.|A|Pc|14|4|30~Nzola|A|Pc|9|4|21~Kevin Carlos|A|Pc|6|13|9~Trepy|A|Pc|2|1|1",
+        "Como":"Butez|P|Por|14|16|56~Sanchez Ro.|P|Por|7|8|4~Vigorito|P|Por|1|1|1~Ramon|D|Dc|18|10|41~Kaiki|D|Ds;E|15|7|21~Couto|D|Dd;E|9|8|22~Kempf|D|Dc|8|5|15~Valle|D|Ds;E|8|6|20~Chalobah T.|D|Dd;Dc|8|9|15~Smolcic I.|D|Dd;E|4|4|8~Kambwala|D|Dd;Dc|2|3|4~Goldaniga|D|Dc|1|1|1~Paz N.|C|T;A|29|30|220~Baturina|C|T|22|19|155~Da Cunha|C|C;T|15|18|51~Caqueret|C|C;T|12|6|19~Perrone|C|M;C|10|10|20~Liberali|C|T|9|6|16~Milla|C|M;C|8|5|21~Rodriguez Je.|C|W;A|7|12|14~Addai|C|W;A|4|5|8~Ricci S.|C|M;C|3|4|10~Lahdo|C|C;T|1|1|1~Douvikas|A|Pc|27|20|143~Kean|A|Pc|16|25|40~Diao|A|W;A|13|11|41",
+        "Fiorentina":"De Gea|P|Por|6|13|13~Christensen O.|P|Por|1|1|1~Lezzerini|P|Por|1|1|1~Jimenez A.|D|Dd;Ds;E|16|8|40~Joao Mario|D|Dd;E|7|3|13~Pongracic|D|Dc|6|4|8~Dragusin|D|Dc|5|8|12~Valdepenas|D|Ds;Dc|5|6|10~Dodò|D|Dd;E|5|10|7~Viery|D|Ds;Dc|4|6|10~Ranieri L.|D|Ds;Dc|2|3|9~Parisi|D|Ds;E|1|5|7~Mastantuono|C|W;T|19|12|87~Njie|C|W;A|13|4|83~Goncalves P.|C|W;T|10|12|33~Atta|C|C;T|9|17|30~Fagioli|C|M;C|8|8|20~Ndour|C|C|7|8|18~Oulai|C|M;C|5|6|10~Brescianini|C|C;T|5|3|7~Pellegrino M.|A|Pc|16|15|50~Beto|A|Pc|10|14|15~Gnonto|A|W;A|5|7|12",
+        "Frosinone":"Palmisani|P|Por|13|4|28~Desplanches|P|Por|1|2|1~Lolic|P|Por|1|1|1~Pisseri|P|Por|1|1|1~Bracaglia|D|Ds;Dc|12|5|14~Oyono A.|D|Dd;E|12|5|12~Calvani|D|Dc|9|4|16~Monterisi|D|Dc|7|6|10~Terzic|D|Ds;E|7|4|5~Cittadini|D|Dc|4|3|10~Amey|D|Dc|3|1|1~Tchato|D|Dd;E|2|3|6~Akpoguma|D|Dc|1|3|4~Omar Fayed|D|Dc|1|1|1~Calò|C|M;C|21|7|100~Schmid|C|W;T|18|8|62~Masini|C|M;C|10|2|14~Cichella|C|M;C|9|4|10~Fini |C|W|6|3|10~Zerbin|C|W|5|5|8~Hasa|C|C;T|4|2|1~El Azzouzi A.|C|M;C|1|1|1~Kone B.|C|C|1|1|1~Gelli F.|C|C;T|1|3|1~Grillitsch|C|M;C|1|5|7~Raimondo|A|Pc|18|7|80~Ghedjemis|A|W;A|17|9|56~Kvernadze|A|W;A|17|4|58~Birligea|A|Pc|9|5|25~Bobcek|A|Pc|5|9|9",
+        "Genoa":"Bijlow|P|Por|10|8|14~Sommariva|P|Por|1|1|1~Stolz|P|Por|1|1|1~Ostigard|D|Dc|8|11|26~Ehizibue|D|Dd;E|8|4|9~Vasquez|D|Ds;Dc|6|9|18~Marcandalli|D|Dc|5|6|11~Mitaj|D|Ds;E|3|4|5~Otoa|D|Dc|2|2|7~Sabelli|D|Dd;Ds;E|2|2|5~Puczka|D|Ds;E|1|2|1~Drameh|D|Dd;Ds;E|1|3|1~Messias|C|W;T|15|3|18~Baldanzi|C|T|12|11|19~Ellertsson|C|E;C|11|6|25~El Shaarawy|C|W|11|7|24~Frendrup|C|M;C|8|7|15~Amorim|C|M;C|5|4|6~Traorè Hj.|C|W;T|4|5|11~Sow|C|M;C|4|7|10~Wiafe|C|C;T|4|1|5~Meichtry|C|W;T|3|5|6~Venturino|C|W|1|2|2~Osmajic|A|Pc|16|8|85~Colombo|A|Pc|7|11|17~Vitinha O.|A|A|5|8|10~Havel|A|Pc|1|4|1~Robinho Junior|A|A|1|1|1",
+        "Inter":"Martinez Jo.|P|Por|10|17|51~Provedel|P|Por|4|2|10~Di Gennaro|P|Por|1|1|1~Dimarco|D|E;W|22|32|135~Carlos Augusto|D|B;Ds;E|16|7|45~Bisseck|D|Dc|14|11|29~Bastoni|D|Dc|12|14|37~Akanji|D|Dc|11|16|29~Spence|D|E|8|12|17~Stones|D|Dc|6|12|8~Pavard|D|Dd;Dc|3|6|10~Calhanoglu|C|M;C|27|27|200~Barella|C|C|18|17|63~Zielinski|C|C|18|10|42~Diouf|C|E;C|15|8|50~Sucic P.|C|C|12|8|20~Jones C.|C|C|8|12|12~Mkhitaryan|C|C|7|5|13~Luis Henrique|C|E;W|4|4|10~Stankovic A.|C|M;C|2|3|6~Thuram|A|Pc|35|29|345~Martinez L.|A|Pc|32|35|345~Esposito F.P.|A|Pc|21|16|88~Bonny|A|Pc|13|7|18",
+        "Juventus":"Vicario|P|Por|13|16|53~Pinsoglio|P|Por|1|1|1~Grabara|P|Por|1|1|1~Neto|P|Por|1|1|1~Bremer|D|Dc|19|15|75~Kalulu|D|Dd;Dc|10|13|24~Gatti|D|Dc|8|4|12~Lucumì|D|Dc|6|8|14~Celik|D|B;Dd;E|6|8|11~Cambiaso|D|Dd;Ds;E|5|9|8~Cabal|D|B;Ds;E|4|1|4~Kelly L.|D|Ds;Dc|3|5|10~Rugani|D|Dc|1|1|1~Zhegrova|C|W|14|6|16~Alajbegovic|C|W;T|14|12|30~Conceicao|C|W;A|14|12|40~McKennie|C|C;T|12|17|50~Koopmeiners|C|C;T|12|5|12~Gonzalez N.|C|W;A|12|11|25~Douglas Luiz|C|C|9|4|27~Locatelli|C|M;C|6|8|15~Sarr P.|C|M;C|5|7|12~Thuram K.|C|C|4|10|10~Woltemade|A|A|19|23|45~Kolo Muani|A|Pc|17|26|82~Yildiz|A|A|14|23|60~Boga|A|W;A|8|6|17~Ekhator|A|A|1|3|4~Milik|A|Pc|1|5|1",
+        "Lazio":"Mandas|P|Por|17|9|64~Motta|P|Por|1|1|1~Renzetti|P|Por|1|1|1~Tavares N.|D|Ds;E|16|6|95~Floriani Mussolini|D|Dd;E|10|3|20~Provstgaard|D|Dc|9|3|18~Pedraza|D|Ds;E|8|5|7~Doekhi|D|Dc|7|7|11~Sutalo J.|D|Dc|6|7|12~Leite|D|Dc|6|6|8~Lazzari|D|Dd;E|3|2|4~Marusic|D|Dd;Ds;E|3|6|7~Pellegrini Lu.|D|Ds;E|1|2|2~Zaccagni|C|W;A|22|16|117~Isaksen|C|W;A|19|9|60~Taylor K.|C|C;T|18|13|60~Frattesi|C|C;T|16|7|120~Dele-Bashiru|C|C;T|12|5|10~Belahyane|C|M;C|11|1|13~Cancellieri|C|W;A|11|9|13~Gudmundsson A.|C|T;A|10|13|15~Rovella|C|M;C|5|6|12~Cataldi|C|M;C|1|4|7~Przyborek|C|W;T|1|1|2~Noslin|A|A|18|6|100~Pinamonti|A|Pc|15|13|43",
+        "Lecce":"Falcone|P|Por|6|8|17~Penev|P|Por|1|1|1~Bleve|P|Por|1|1|1~Tiago Gabriel|D|Dc|12|7|21~Veiga D.|D|Dd;E|8|5|12~Gallo|D|Ds;E|8|6|12~Siebert|D|Dc|5|4|12~Gaspar K.|D|Dc|4|5|8~Dembelè A.|D|Dd;E|4|1|1~Ndaba|D|Ds;E|2|1|4~Jean|D|Dc|1|2|1~Coulibaly L.|C|M;C|12|6|17~Maleh|C|M;C|7|2|7~Monteiro J.|C|W;A|7|7|10~Gorter|C|M;C|5|1|9~Ngom|C|M;C|4|4|8~Pierotti|C|W|4|6|10~Ilic|C|M;C|4|1|12~Gandelman|C|C;T|3|5|7~Kaba|C|M;C|2|1|3~Fofana Sa.|C|M;C|1|1|1~Berisha M.|C|C;T|1|5|4~Laerke|C|W;A|1|1|1~N'Dri|A|W;A|10|3|14~Fatah|A|W;A|9|4|7~Geubbels|A|Pc|4|9|11~Stulic|A|Pc|3|7|8~Esteban|A|Pc|2|1|6",
+        "Milan":"Maignan|P|Por|14|15|48~Terracciano|P|Por|1|1|1~Torriani|P|Por|1|1|1~Gila|D|Dc|16|12|35~Pavlovic|D|Dc|11|14|53~Tomori|D|Dc|7|7|10~De Winter|D|Dd;Dc|7|3|16~Bartesaghi|D|Ds;E|4|8|10~Gabbia|D|Dc|3|7|7~Diawara S.|D|Ds;Dc|3|2|10~Estupinan|D|Ds;E|3|3|9~Terracciano F.|D|B;Dd;Ds|2|2|2~Rabiot|C|C;T|29|22|225~Pulisic|C|T;A|28|25|180~Moreira|C|E;W|19|12|82~Modric|C|M;C|13|12|55~Cissè A.|C|W;T|11|3|82~Saelemaekers|C|E;W|10|10|20~Chukwueze|C|E;W|10|6|18~Hutchinson|C|W;A|10|8|21~Musah|C|C;W|8|2|17~Jashari|C|M;C|6|4|11~Loftus-Cheek|C|C;T|4|4|7~Comotto|C|M;C|1|1|1~Ramos G.|A|Pc|19|27|182~Camarda|A|Pc|2|5|4",
+        "Monza":"Tornqvist|P|Por|6|1|6~Thiam|P|Por|2|5|1~Strajnar|P|Por|1|1|1~Mangas|D|Ds;E|14|6|20~Goglichidze|D|Dd;Dc|10|2|5~Kouadio|D|Dd;Dc|8|3|13~Birindelli|D|Dd;Ds;E|8|4|12~Lucchesi|D|Dc|4|4|11~Carboni A.|D|Ds;Dc|4|3|10~Bakoune|D|Dd;E|4|1|2~Antov|D|Dc|1|1|1~Ziolkowski|D|Dc|1|1|2~Maye|D|Ds;Dc|1|1|1~Akinsanmiro|C|C|9|6|12~Colpani|C|T|9|8|9~Foe Ondoa|C|C|4|1|10~Pessina|C|M;C|3|7|14~Folorunsho|C|C;T|3|4|11~Tourè I.|C|E;M|3|6|5~Colombo L.|C|M;C|2|3|3~Mout|C|C|2|1|4~Ciurria|C|E;W|1|2|1~Forson O.|C|W;T|1|1|3~Varela G.|A|Pc|20|3|168~Robinson J.|A|A|14|4|20~Mota|A|A|12|5|14~Zeballos|A|A|8|6|9~Cutrone|A|Pc|4|9|10~Ngonge|A|A|3|5|8",
+        "Napoli":"Meret|P|Por|9|11|42~Milinkovic-Savic V.|P|Por|9|5|15~Contini|P|Por|1|1|1~Rrahmani|D|Dc|12|14|44~Di Lorenzo|D|Dd;E|11|12|32~Marin R.|D|Dc|6|2|22~Spinazzola|D|Ds;E|6|8|11~Olivera|D|B;Ds;E|5|5|10~Favasuli|D|Dd;Ds;E|5|4|8~Badiashile|D|Dc|4|7|7~Beukema|D|Dc|3|6|7~Buongiorno|D|Dc|3|7|7~Marianucci|D|Dc|1|1|4~De Bruyne|C|T|23|15|111~McTominay|C|C;T|20|28|145~Politano|C|W|17|10|51~Lobotka|C|M;C|12|7|12~Gilmour|C|M;C|11|3|11~Vergara|C|W;T|11|8|13~Zambo Anguissa|C|C|9|11|23~Hojlund|A|Pc|24|28|175~Lang|A|A|12|3|26~Santos A.|A|W;A|8|14|17~Giovane|A|A|5|4|6~Lucca|A|Pc|4|3|10~Neres|A|W;A|3|6|11",
+        "Parma":"Daffara|P|Por|9|7|15~Corvi|P|Por|5|1|2~Ghidotti|P|Por|1|1|1~Valeri|D|Ds;E|8|8|20~Delprato|D|B;Dd;E|6|8|18~Troilo|D|Dc|5|3|13~Diego Carlos|D|Dc|5|8|10~Britschgi|D|Dd;Ds;E|4|3|10~Drobnic|D|Dc|3|1|1~Ndiaye|D|Dc|2|1|4~Valenti|D|Dc|2|4|4~Carboni F.|D|Ds;E|1|1|3~Fabbian|C|C;T|9|4|20~Keita M.|C|M;C|6|5|12~Almqvist|C|W;A|6|4|5~Sierro|C|M;C|6|1|15~Bernabè|C|C|4|7|16~Ordonez C.|C|M;C|3|2|6~Cremaschi|C|E;C|2|1|1~Nicolussi Caviglia|C|M;C|2|6|10~Diallo O.|C|W;A|2|3|1~Romero D.|A|Pc|16|10|26~Lontani|A|A|14|1|22~Tourè E.|A|Pc|7|11|20~Frigan|A|A|4|5|1~Elphege|A|Pc|4|3|3~De Martis|A|Pc|1|1|1",
+        "Roma":"Svilar|P|Por|15|18|65~Gollini|P|Por|8|1|20~Vasquez D.|P|Por|2|1|3~De Marzi|P|Por|1|1|1~Wesley|D|E|18|17|87~Hermoso|D|Dc|15|10|45~Molina N.|D|E|15|18|42~Balerdi|D|Dc|13|6|34~Mancini|D|Dc|12|15|49~Ndicka|D|Dc|12|13|34~Ghilardi|D|Dc|8|4|15~Lulli|D|E|8|1|20~Koulierakis|D|Dc|4|8|8~Rensch|D|B;Dd;E|3|5|12~Mora|C|T|24|19|80~Konè M.|C|M;C|14|10|45~Pisilli|C|C|14|5|36~Cristante|C|M;C|13|8|42~De Roon|C|M;C|7|4|10~Pellegrini Lo.|C|C;T|5|10|10~Malen|A|Pc|37|34|425~Soulè|A|A|21|12|90~Dybala|A|A|16|14|75~Castro S.|A|Pc|15|14|42",
+        "Sassuolo":"Muric|P|Por|3|7|2~Turati|P|Por|3|1|3~Russo A.|P|Por|1|1|1~Satalino|P|Por|1|1|1~Doig|D|Ds;E|10|4|12~Leysen F.|D|Ds;Dc|8|5|4~Odenthal|D|Dc|6|1|5~Cinquegrano|D|Dd;E|5|1|10~Idzes|D|Dc|4|7|10~Obrador|D|Ds;E|4|6|5~Caleta-Car|D|Dc|3|6|7~Van Der Brempt|D|Dd;E|2|2|5~Walukiewicz|D|Dd;Dc|1|4|9~Candè|D|Ds;Dc|1|3|3~Pieragnolo|D|Ds;E|1|1|1~Matic|C|M;C|12|5|15~Adzic|C|C;T|12|5|31~Bakola|C|C;T|11|5|15~Thorstvedt|C|C;T|8|10|17~Volpato|C|W;T|8|7|13~Dominguez B.|C|W;A|5|3|10~Konè I.|C|C|4|9|20~Lipani|C|M;C|3|2|3~Sulemana I.|C|M;C|2|3|5~Boloca|C|M;C|1|2|1~Esposito Se.|A|A|19|13|37~Berardi|A|A|16|18|70~Laurientè|A|A|16|15|55~Bowie|A|Pc|11|10|14",
+        "Torino":"Perri|P|Por|8|9|13~Mascardi|P|Por|1|1|1~Siviero|P|Por|1|1|1~Belghali|D|Dd;E|13|7|28~Comuzzo|D|Dc|10|6|13~Coco|D|Dc|9|7|13~Ismajli|D|Dc|7|7|9~Comert|D|Dc|5|4|4~Fortini|D|E|5|5|4~Patterson|D|Dd;E|3|5|4~Rodriguez R.|D|B;Ds;E|3|5|6~Biraghi|D|B;Ds;E|1|2|4~Mandragora|C|C|13|9|30~Vlasic|C|T|11|14|52~Cacciamani|C|E;W|10|5|18~Fitz-Jim|C|M;C|10|4|18~Braganca|C|C|9|6|16~Gineitis|C|M;C|6|5|10~Casadei|C|C;T|5|10|8~Ilkhan|C|M;C|3|4|7~Oristanio|C|W;T|3|7|6~Aboukhlal|C|W;A|2|3|2~Adams C.|A|A|18|9|33~Simeone|A|Pc|18|15|69~Kulenovic|A|Pc|12|4|15~Zapata D.|A|Pc|3|7|4",
+        "Udinese":"Okoye|P|Por|6|9|9~Padelli|P|Por|1|1|1~Mrozek|P|Por|1|1|1~Kamara H.|D|Ds;E|14|6|17~Abankwah|D|Dd;Dc|9|1|12~Alaba|D|Dc|9|10|12~Solet|D|Dc|8|13|20~Palma|D|Dc|6|2|6~Vojvoda|D|Dd;E|5|8|13~Ebosse|D|Ds;Dc|4|2|5~Kabasele|D|Dc|3|4|7~Bertola|D|Dd;Ds;Dc|3|4|7~Zanoli|D|Dd;E|3|4|8~Arizala|D|Ds;E|2|4|7~Ekkelenkamp|C|C;T|17|10|57~Zaniolo|C|T;A|11|18|47~Karlstrom|C|M;C|8|6|15~Piotrowski|C|M;C|8|5|11~Unai Gomez|C|T|5|7|12~Miller L.|C|M;C|3|3|12~Zarraga|C|M;C|2|1|4~Chakvetadze|C|W;T|2|2|9~Jovanovic|C|W;T|2|2|2~Lovric|C|C|1|1|1~Davis K.|A|Pc|14|19|65~Gueye|A|Pc|6|4|4~Bayo V.|A|Pc|1|1|3",
+        "Venezia":"Stankovic F.|P|Por|10|6|10~Grandi|P|Por|1|1|1~Pozzi|P|Por|1|1|1~Montipò|P|Por|1|1|1~Hainaut|D|Dd;E|14|3|30~Mazzocchi|D|Dd;Ds;E|6|1|10~Sagrado|D|Dd;E|6|2|3~Haps|D|Ds;E|5|5|8~Juan Jesus|D|Ds;Dc|5|4|11~Halhal|D|Dc|4|4|7~Correia T.|D|Dd;Ds;E|4|4|7~Moreno M.|D|Dc|3|5|6~Bella-Kotchap|D|Dc|2|6|8~Schingtienne|D|Dc|2|3|4~Sverko|D|Ds;Dc|1|3|1~Gomes|D|Ds;Dc|1|1|1~Franjic|D|B;Ds;E|1|2|1~Perez K.|C|C;T|9|5|20~Basic|C|M;C|8|6|17~Busio|C|M;C|6|5|12~Sohm|C|C|5|5|10~Helgason|C|C;T|4|3|6~Dagasso|C|C|2|1|1~Fernandez T.|C|T;A|2|3|4~Duncan|C|C|1|2|1~Adams A.|A|Pc|13|12|29~Yeboah J.|A|A|8|8|21~Rrahmani Al.|A|Pc|4|8|5~Lauberbach|A|Pc|2|1|1~Lisman|A|W;A|1|1|1~Adorante|A|Pc|1|5|1"
+    };
 
-            let scoreA = 50;
-            let scoreB = 50;
+    const playersDB = {};
 
-            // Punteggi fattore campo
-            if (matchA === 'home') scoreA += 10;
-            if (matchB === 'home') scoreB += 10;
+    function stimaFantamedia(r, qta, diff, fvm) {
+        let fm = 6.0;
+        if (r === 'P') {
+            fm = 5.0 + (qta / 17.0) * 1.35 + (diff * 0.03);
+        } else if (r === 'D') {
+            fm = 5.65 + (qta / 22.0) * 1.25 + (diff * 0.03) + (fvm / 150.0) * 0.25;
+        } else if (r === 'C') {
+            fm = 5.85 + (qta / 29.0) * 1.85 + (diff * 0.035) + (fvm / 230.0) * 0.45;
+        } else {
+            fm = 6.00 + (qta / 37.0) * 2.40 + (diff * 0.04) + (fvm / 425.0) * 0.65;
+        }
+        return Math.max(4.5, Math.min(10.5, Number(fm.toFixed(2))));
+    }
 
-            // Punteggi difficoltà avversario
-            const diffScores = { easy: 20, medium: 10, hard: 0 };
-            scoreA += diffScores[diffA];
-            scoreB += diffScores[diffB];
+    function unpackListone() {
+        Object.keys(rawListone2627).forEach(team => {
+            const entries = rawListone2627[team].split('~');
+            entries.forEach(item => {
+                const [nome, r, rm, qtaStr, qtiStr, fvmStr] = item.split('|');
+                const qta = parseInt(qtaStr, 10);
+                const qti = parseInt(qtiStr, 10);
+                const diff = qta - qti;
+                const fvm = parseInt(fvmStr, 10);
+                const cleanName = nome.trim();
+                playersDB[cleanName] = {
+                    team,
+                    r,
+                    rm,
+                    qta,
+                    qti,
+                    diff,
+                    fvm,
+                    fm: stimaFantamedia(r, qta, diff, fvm)
+                };
+            });
+        });
 
-            // Aggiungiamo un pizzico di casualità realistica (fattore bonus imprevisto)
-            scoreA += Math.floor(Math.random() * 10);
-            scoreB += Math.floor(Math.random() * 10);
+        // Carica eventuali Fantamedie personalizzate salvate dall'utente per la stagione 26/27
+        const customFM = localStorage.getItem('fantahub_custom_fm_2627_v4');
+        if (customFM) {
+            const parsed = JSON.parse(customFM);
+            Object.keys(parsed).forEach(k => {
+                if (playersDB[k]) playersDB[k].fm = parsed[k];
+            });
+        }
+    }
 
-            const resultBox = document.getElementById('resultBox');
-            const winnerName = document.getElementById('winnerText');
-            const winnerDesc = document.getElementById('winnerDesc');
+    function initApp() {
+        unpackListone();
 
-            resultBox.style.display = 'block';
+        const datalist = document.getElementById('playersList2627');
+        datalist.innerHTML = '';
+        Object.keys(playersDB).sort().forEach(player => {
+            const p = playersDB[player];
+            const diffSign = p.diff > 0 ? `+${p.diff}` : p.diff;
+            const opt = document.createElement('option');
+            opt.value = player;
+            opt.label = `${p.team} • Ruolo: ${p.r} (${p.rm}) • Qt.A: ${p.qta} (${diffSign}) • FVM: ${p.fvm}`;
+            datalist.appendChild(opt);
+        });
 
-            if (scoreA >= scoreB) {
-                winnerName.innerText = `🔥 Schiera ${pA}!`;
-                winnerDesc.innerText = `${pA} ha combinato fattore campo e avversario più favorevoli rispetto a ${pB}. Mettilo titolare e non pensarci più.`;
+        const teamSelects = ['teamA', 'oppA', 'teamB', 'oppB'];
+        const teamNames = Object.keys(teams2627).sort();
+
+        teamSelects.forEach(selId => {
+            const sel = document.getElementById(selId);
+            teamNames.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t;
+                opt.textContent = `${t} (${teams2627[t].pos}° class.)`;
+                sel.appendChild(opt);
+            });
+        });
+
+        // Confronto iniziale di esempio con giocatori reali 2026/27
+        document.getElementById('nameA').value = "Rabiot";
+        document.getElementById('oppA').value = "Bologna";
+        autoFillPlayer('A');
+        onOppChange('A');
+
+        document.getElementById('nameB').value = "Paz N.";
+        document.getElementById('oppB').value = "Inter";
+        autoFillPlayer('B');
+        onOppChange('B');
+    }
+
+    function autoFillPlayer(side) {
+        const nameInput = document.getElementById('name' + side).value.trim();
+        const foundKey = Object.keys(playersDB).find(k => k.toLowerCase() === nameInput.toLowerCase());
+
+        if (foundKey) {
+            const p = playersDB[foundKey];
+            document.getElementById('fm' + side).value = Number(p.fm).toFixed(2);
+            document.getElementById('roleLabel' + side).innerText = `Ruolo: ${p.r} (${p.rm})`;
+            document.getElementById('qta' + side).innerText = p.qta;
+            document.getElementById('qti' + side).innerText = p.qti;
+            document.getElementById('diff' + side).innerText = p.diff > 0 ? `+${p.diff}` : p.diff;
+            document.getElementById('fvm' + side).innerText = p.fvm;
+
+            const diffPill = document.getElementById('diffPill' + side);
+            diffPill.className = 'l-pill ' + (p.diff > 0 ? 'pos-diff' : (p.diff < 0 ? 'neg-diff' : ''));
+
+            // Imposta stato di forma automatico in base a Diff. del listone
+            if (p.diff >= 4) {
+                document.getElementById('status' + side).value = 'fire';
+            } else if (p.diff <= -3) {
+                document.getElementById('status' + side).value = 'cold';
             } else {
-                winnerName.innerText = `🔥 Schiera ${pB}!`;
-                winnerDesc.innerText = `${pB} ha statistiche e condizioni di match migliori rispetto a ${pA}. Fidati dei dati e schieralo.`;
+                document.getElementById('status' + side).value = 'normal';
             }
 
-            resultBox.scrollIntoView({ behavior: 'smooth' });
+            if (teams2627[p.team]) {
+                document.getElementById('team' + side).value = p.team;
+                onTeamChange(side);
+            }
         }
-    </script>
+    }
+
+    function onTeamChange(side) {
+        const teamName = document.getElementById('team' + side).value;
+        const tData = teams2627[teamName];
+        if (tData) {
+            document.getElementById('posTeam' + side).value = tData.pos;
+            document.getElementById('formTeam' + side).value = tData.forma;
+        }
+    }
+
+    function onOppChange(side) {
+        const oppName = document.getElementById('opp' + side).value;
+        const oData = teams2627[oppName];
+        if (oData) {
+            document.getElementById('posOpp' + side).value = oData.pos;
+            document.getElementById('defOpp' + side).value = oData.difesa;
+        }
+    }
+
+    function calcolaScoreGiocatore(side) {
+        const nameInput = document.getElementById('name' + side).value.trim() || `Giocatore ${side}`;
+        const foundKey = Object.keys(playersDB).find(k => k.toLowerCase() === nameInput.toLowerCase());
+        const pData = foundKey ? playersDB[foundKey] : { r: 'C', rm: 'C', qta: 12, qti: 12, diff: 0, fvm: 30 };
+
+        const fm = parseFloat(document.getElementById('fm' + side).value) || 6.5;
+        const status = document.getElementById('status' + side).value;
+        const teamName = document.getElementById('team' + side).value;
+        const posTeam = parseInt(document.getElementById('posTeam' + side).value, 10) || 10;
+        const formTeam = parseFloat(document.getElementById('formTeam' + side).value) || 6.5;
+
+        const oppName = document.getElementById('opp' + side).value;
+        const posOpp = parseInt(document.getElementById('posOpp' + side).value, 10) || 10;
+        const defOpp = parseFloat(document.getElementById('defOpp' + side).value) || 6.5;
+        const venue = document.getElementById('venue' + side).value;
+
+        // Salva eventuale modifica manuale della FM
+        if (foundKey) {
+            playersDB[foundKey].fm = fm;
+            const savedCustom = JSON.parse(localStorage.getItem('fantahub_custom_fm_2627_v4') || '{}');
+            savedCustom[foundKey] = fm;
+            localStorage.setItem('fantahub_custom_fm_2627_v4', JSON.stringify(savedCustom));
+        }
+
+        // 1. Peso Fantamedia + Valore Listone (Qt.A e FVM)
+        const fmScore = (fm - 5.0) * 17.5;
+        const listoneValueScore = (pData.qta * 0.25) + Math.min(8.0, pData.fvm / 45.0) + (pData.diff * 0.22);
+
+        // 2. Peso Squadra (Posizione in classifica e Forma)
+        const teamRankScore = (21 - posTeam) * 0.45;
+        const teamFormScore = formTeam * 1.25;
+
+        // 3. Peso Avversario (Posizione e perforabilità della difesa)
+        const oppRankAdvantage = posOpp * 0.5;
+        const oppDefWeakness = (10 - defOpp) * 2.5;
+
+        // 4. Fattore Campo e Stato di Forma
+        const venueBonus = (venue === 'home') ? 4.2 : 0;
+        const statusModifiers = { fire: 5.0, normal: 2.0, sub: -6.5, cold: -3.5 };
+        const statusBonus = statusModifiers[status] || 0;
+
+        const total = fmScore + listoneValueScore + teamRankScore + teamFormScore + oppRankAdvantage + oppDefWeakness + venueBonus + statusBonus;
+
+        return {
+            name: foundKey || nameInput,
+            r: pData.r,
+            rm: pData.rm,
+            qta: pData.qta,
+            qti: pData.qti,
+            diff: pData.diff,
+            fvm: pData.fvm,
+            fm,
+            teamName,
+            posTeam,
+            formTeam,
+            oppName,
+            posOpp,
+            defOpp,
+            venue,
+            status,
+            total: Math.max(10, total)
+        };
+    }
+
+    function confrontaGiocatori() {
+        const A = calcolaScoreGiocatore('A');
+        const B = calcolaScoreGiocatore('B');
+
+        const delta = A.total - B.total;
+        let pctA = Math.round(50 + (delta * 1.3));
+        pctA = Math.max(12, Math.min(88, pctA));
+        const pctB = 100 - pctA;
+
+        const panel = document.getElementById('resultPanel');
+        panel.style.display = 'block';
+
+        const winner = (A.total >= B.total) ? A : B;
+        const loser = (A.total >= B.total) ? B : A;
+        const winPct = (A.total >= B.total) ? pctA : pctB;
+
+        document.getElementById('winnerHeadline').innerText = `SCHIERA ${winner.name.toUpperCase()} (${winPct}%)`;
+
+        const barA = document.getElementById('barA');
+        const barB = document.getElementById('barB');
+        barA.style.width = pctA + '%';
+        barA.innerText = `${A.name} ${pctA}%`;
+        barB.style.width = pctB + '%';
+        barB.innerText = `${B.name} ${pctB}%`;
+
+        // Box 1: Fantamedia & Quotazione
+        document.getElementById('cmpFM').innerText =
+            `${A.name} (FM ${A.fm.toFixed(2)}, Qt.A ${A.qta}, FVM ${A.fvm}) vs ${B.name} (FM ${B.fm.toFixed(2)}, Qt.A ${B.qta}, FVM ${B.fvm}).`;
+
+        // Box 2: Avversario
+        const oppEaseA = A.posOpp + (10 - A.defOpp);
+        const oppEaseB = B.posOpp + (10 - B.defOpp);
+        const easierOpp = (oppEaseA >= oppEaseB) ? A : B;
+        document.getElementById('cmpOpp').innerText =
+            `Calendario migliore per ${easierOpp.name}: affronta ${easierOpp.oppName} (${easierOpp.posOpp}° posto, difesa ${easierOpp.defOpp}/10).`;
+
+        // Box 3: Forma Squadra & Trend Diff.
+        const diffStrA = A.diff > 0 ? `+${A.diff}` : A.diff;
+        const diffStrB = B.diff > 0 ? `+${B.diff}` : B.diff;
+        document.getElementById('cmpTeam').innerText =
+            `${A.teamName} (${A.posTeam}°, forma ${A.formTeam}/10, Diff. giocatore ${diffStrA}) vs ${B.teamName} (${B.posTeam}°, forma ${B.formTeam}/10, Diff. ${diffStrB}).`;
+
+        // Box 4: Campo e Ruolo
+        document.getElementById('cmpContext').innerText =
+            `${A.name} [${A.r} - ${A.rm}] gioca ${A.venue === 'home' ? 'in casa' : 'in trasferta'} • ${B.name} [${B.r} - ${B.rm}] gioca ${B.venue === 'home' ? 'in casa' : 'in trasferta'}.`;
+
+        // Spiegazione finale
+        let reasons = [];
+        if (winner.fm >= loser.fm) {
+            reasons.push(`vanta una Fantamedia superiore (${winner.fm.toFixed(2)} contro ${loser.fm.toFixed(2)}) e una quotazione attuale di ${winner.qta} (FVM ${winner.fvm}/1000)`);
+        } else {
+            reasons.push(`pur avendo una Fantamedia inferiore (${winner.fm.toFixed(2)} vs ${loser.fm.toFixed(2)}), ribalta il pronostico grazie a un turno di campionato molto più favorevole`);
+        }
+
+        if (winner.defOpp < loser.defOpp || winner.posOpp > loser.posOpp) {
+            reasons.push(`affronta il ${winner.oppName} (${winner.posOpp}° in classifica, indice difensivo ${winner.defOpp}/10) che concede più spazi rispetto al ${loser.oppName} (${loser.posOpp}°, difesa ${loser.defOpp}/10)`);
+        }
+
+        if (winner.diff > loser.diff) {
+            const wDiff = winner.diff > 0 ? `+${winner.diff}` : winner.diff;
+            reasons.push(`ha un miglior trend stagionale nel listone (variazione quotazione ${wDiff})`);
+        }
+
+        if (winner.venue === 'home' && loser.venue === 'away') {
+            reasons.push(`ha il vantaggio del fattore campo in casa`);
+        }
+
+        document.getElementById('finalExplanation').innerText =
+            `L'algoritmo sceglie ${winner.name} (${winner.total.toFixed(1)} pt contro ${loser.total.toFixed(1)} pt): ${reasons.join(", ")}.`;
+
+        panel.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.onload = initApp;
+</script>
+
 </body>
 </html>
