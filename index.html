@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi Schiero? AUTO 2026/27 • Fantacalcio Tool</title>
+    <title>Chi Schiero? AUTO • 12ª Giornata Serie A 2026/27</title>
     <style>
         * {
             box-sizing: border-box;
@@ -363,12 +363,12 @@
 <div class="container">
     <div class="top-bar">
         <a href="https://tool-utili.github.io/" class="back-link">← Torna a FantaHub</a>
-        <span class="season-badge">Listone Ufficiale 2026/27 • Fully Automated</span>
+        <span class="season-badge">12ª Giornata Serie A (21-23 Nov 2026)</span>
     </div>
 
     <div class="header">
         <h1>Chi <span>Schiero?</span> AUTO</h1>
-        <p class="subtitle">Seleziona il giocatore: squadra, avversario, difesa e trend si configurano da soli in un millisecondo.</p>
+        <p class="subtitle">Simulatore di ballottaggio allineato alle partite ufficiali di questo weekend.</p>
     </div>
 
     <datalist id="playersList2627"></datalist>
@@ -383,7 +383,7 @@
 
             <div class="field">
                 <label>Cerca Giocatore</label>
-                <input type="text" id="nameA" list="playersList2627" placeholder="Es. Rabiot, Malen, Paz N., Pulisic..." oninput="autoFillPlayer('A')">
+                <input type="text" id="nameA" list="playersList2627" placeholder="Es. Rabiot, Pulisic, Retegui, Lookman..." oninput="autoFillPlayer('A')">
             </div>
 
             <div class="listone-badges" id="badgesA">
@@ -399,38 +399,25 @@
                     <input type="number" id="fmA" step="0.05" min="4" max="13" value="8.00">
                 </div>
                 <div class="field">
-                    <label>Trend Auto-Rilevato</label>
+                    <label>Trend Auto</label>
                     <select id="statusA" disabled style="opacity: 0.8; cursor: not-allowed;">
-                        <option value="fire">🔥 In Hype (Trend Positivo)</option>
-                        <option value="normal">✅ Stabile / Titolare</option>
-                        <option value="cold">❄️ In Calo (Trend Negativo)</option>
+                        <option value="fire">🔥 In Hype</option>
+                        <option value="normal">✅ Stabile</option>
+                        <option value="cold">❄️ In Calo</option>
                     </select>
                 </div>
             </div>
 
-            <div class="section-divider">Club & Avversario (Auto-configurati)</div>
+            <div class="section-divider">Match 12ª Giornata</div>
             
             <div class="field">
-                <label>Squadra del Giocatore</label>
-                <input type="text" id="teamDisplayA" readonly style="background-color: #0b1120; color: #38bdf8; font-weight:700;">
-            </div>
-
-            <div class="row-2">
-                <div class="field">
-                    <label>Contro chi gioca?</label>
-                    <select id="oppA" onchange="onOppChange('A')"></select>
-                </div>
-                <div class="field">
-                    <label>Fattore Campo</label>
-                    <select id="venueA">
-                        <option value="home" selected>🏠 In Casa</option>
-                        <option value="away">✈️ Trasferta</option>
-                    </select>
-                </div>
+                <label>Squadra & Avversario di Turno</label>
+                <input type="text" id="teamDisplayA" readonly style="background-color: #0b1120; color: #38bdf8; font-weight:700; margin-bottom: 8px;">
+                <select id="oppSelectA" onchange="onMatchSelect('A')"></select>
             </div>
 
             <div class="auto-info-box" id="autoInfoA">
-                Seleziona un avversario per caricare in automatico difesa e classifica.
+                Seleziona il giocatore per vedere la partita della 12ª giornata.
             </div>
         </div>
 
@@ -443,7 +430,7 @@
 
             <div class="field">
                 <label>Cerca Giocatore</label>
-                <input type="text" id="nameB" list="playersList2627" placeholder="Es. Krstovic, Hojlund, Varela G., Orsolini..." oninput="autoFillPlayer('B')">
+                <input type="text" id="nameB" list="playersList2627" placeholder="Es. Orsolini, Lautaro, Thuram, Dybala..." oninput="autoFillPlayer('B')">
             </div>
 
             <div class="listone-badges" id="badgesB">
@@ -459,47 +446,34 @@
                     <input type="number" id="fmB" step="0.05" min="4" max="13" value="8.00">
                 </div>
                 <div class="field">
-                    <label>Trend Auto-Rilevato</label>
+                    <label>Trend Auto</label>
                     <select id="statusB" disabled style="opacity: 0.8; cursor: not-allowed;">
-                        <option value="fire">🔥 In Hype (Trend Positivo)</option>
-                        <option value="normal">✅ Stabile / Titolare</option>
-                        <option value="cold">❄️ In Calo (Trend Negativo)</option>
+                        <option value="fire">🔥 In Hype</option>
+                        <option value="normal">✅ Stabile</option>
+                        <option value="cold">❄️ In Calo</option>
                     </select>
                 </div>
             </div>
 
-            <div class="section-divider">Club & Avversario (Auto-configurati)</div>
+            <div class="section-divider">Match 12ª Giornata</div>
 
             <div class="field">
-                <label>Squadra del Giocatore</label>
-                <input type="text" id="teamDisplayB" readonly style="background-color: #0b1120; color: #f43f5e; font-weight:700;">
-            </div>
-
-            <div class="row-2">
-                <div class="field">
-                    <label>Contro chi gioca?</label>
-                    <select id="oppB" onchange="onOppChange('B')"></select>
-                </div>
-                <div class="field">
-                    <label>Fattore Campo</label>
-                    <select id="venueB">
-                        <option value="home">🏠 In Casa</option>
-                        <option value="away" selected>✈️ Trasferta</option>
-                    </select>
-                </div>
+                <label>Squadra & Avversario di Turno</label>
+                <input type="text" id="teamDisplayB" readonly style="background-color: #0b1120; color: #f43f5e; font-weight:700; margin-bottom: 8px;">
+                <select id="oppSelectB" onchange="onMatchSelect('B')"></select>
             </div>
 
             <div class="auto-info-box" id="autoInfoB">
-                Seleziona un avversario per caricare in automatico difesa e classifica.
+                Seleziona il giocatore per vedere la partita della 12ª giornata.
             </div>
         </div>
     </div>
 
-    <button class="btn-calc" onclick="confrontaGiocatori()">Calcola Verdetto Automatico ⚖️</button>
+    <button class="btn-calc" onclick="confrontaGiocatori()">Calcola Verdetto 12ª Giornata ⚖️</button>
 
     <div class="result-panel" id="resultPanel">
         <div class="verdict-header">
-            <div class="verdict-tag">Verdetto Automatico FantaHub</div>
+            <div class="verdict-tag">Verdetto 12ª Giornata FantaHub</div>
             <div class="verdict-winner" id="winnerHeadline">-</div>
         </div>
 
@@ -514,7 +488,7 @@
                 <div class="stat-detail" id="cmpFM">-</div>
             </div>
             <div class="stat-box">
-                <div class="stat-title">🛡️ Avversario & Tenuta Difensiva</div>
+                <div class="stat-title">🛡️ Avversario 12ª Giornata</div>
                 <div class="stat-detail" id="cmpOpp">-</div>
             </div>
             <div class="stat-box">
@@ -528,18 +502,18 @@
         </div>
 
         <div class="reason-list">
-            <h4>Analisi Automatica del Ballottaggio</h4>
+            <h4>Analisi della 12ª Giornata</h4>
             <p id="finalExplanation">-</p>
         </div>
     </div>
 
     <footer>
-        FantaHub 2026/27 • Sistema completamente automatizzato basato su Listone e Statistiche ufficiali
+        FantaHub 2026/27 • Calendario Ufficiale 12ª Giornata Serie A
     </footer>
 </div>
 
 <script>
-    // Dati automatici delle 20 squadre estratti dal listone
+    // Dati squadre e calendario ufficiale 12ª Giornata 2026/27
     const teams2627 = {
         "Inter":      { pos: 1,  forma: 9.0, difesa: 8.7 },
         "Roma":       { pos: 2,  forma: 8.8, difesa: 8.8 },
@@ -563,7 +537,30 @@
         "Venezia":    { pos: 20, forma: 5.3, difesa: 5.7 }
     };
 
-    // Database 539 giocatori
+    // Calendario 12ª Giornata (Squadra -> { avversario, inCasa })
+    const schedule12 = {
+        "Como":       { opp: "Cagliari", home: true },
+        "Cagliari":   { opp: "Como", home: false },
+        "Lazio":      { opp: "Lecce", home: true },
+        "Lecce":      { opp: "Lazio", home: false },
+        "Parma":      { opp: "Roma", home: true },
+        "Roma":       { opp: "Parma", home: false },
+        "Napoli":     { opp: "Torino", home: true },
+        "Torino":     { opp: "Napoli", home: false },
+        "Juventus":   { opp: "Venezia", home: true },
+        "Venezia":    { opp: "Juventus", home: false },
+        "Sassuolo":   { opp: "Genoa", home: true },
+        "Genoa":      { opp: "Sassuolo", home: false },
+        "Bologna":    { opp: "Udinese", home: true },
+        "Udinese":    { opp: "Bologna", home: false },
+        "Milan":      { opp: "Frosinone", home: true },
+        "Frosinone":  { opp: "Milan", home: false },
+        "Atalanta":   { opp: "Inter", home: true },
+        "Inter":      { opp: "Atalanta", home: false },
+        "Monza":      { opp: "Fiorentina", home: true },
+        "Fiorentina": { opp: "Monza", home: false }
+    };
+
     const rawListone2627 = {
         "Atalanta":"Carnesecchi|P|Por|12|16|34~Sportiello|P|Por|1|1|1~Pompei|P|Por|1|1|1~Scalvini|D|Dc|7|10|16~Kolasinac|D|Ds;Dc|6|5|10~Bellanova|D|Dd;E|5|6|18~Zappacosta|D|Dd;E|5|8|13~Bernasconi|D|Ds;E|4|6|11~Hien|D|Dc|3|8|8~Kristensen T.|D|Dd;Dc|3|7|10~Kossounou|D|Dd;Dc|2|3|5~Obric|D|Dc|1|1|1~Zalewski|C|W|13|6|14~Samardzic|C|C;T|12|12|14~Ederson D.S.|C|M;C|10|12|34~Gaetano|C|M;C|10|7|14~Kessiè|C|C|10|12|17~Elmas|C|W;T|8|7|23~Rowe|C|W;T|6|11|22~Pasalic|C|C;T|5|9|13~Krstovic|A|Pc|25|18|186~De Ketelaere|A|A|14|17|55~Scamacca|A|Pc|14|19|41~Raspadori|A|A|12|13|12~Sulemana K.|A|A|2|6|3",
         "Bologna":"Skorupski|P|Por|11|10|21~Pessina Mas.|P|Por|2|1|1~Happonen|P|Por|1|1|1~Miranda J.|D|Ds;E|17|8|41~Casale|D|Dc|10|3|7~Theate|D|Ds;Dc|9|8|11~Zortea|D|Dd;E|7|6|15~Helland|D|Dd;Dc|5|2|7~Darmian|D|B;Dd;E|5|3|10~Heggem|D|Ds;Dc|4|6|10~Holm|D|Dd;E|4|5|3~Vitik|D|Dc|3|5|5~De Silvestri|D|Dd;E|2|1|1~Alhassane|D|Ds;E|2|2|5~Orsolini|C|W;A|20|26|125~Bernardeschi|C|W;T|17|9|48~Pobega|C|M;C|15|6|22~Cambiaghi|C|W;A|14|8|35~Mbangula|C|W;A|12|8|14~Ferguson|C|M;C|10|7|22~Odgaard|C|T|6|8|25~Moro N.|C|M;C|3|4|12~Amondarain|C|M;C|2|5|7~El Azzouzi O.|C|M;C|2|2|6~Libra|C|C;T|1|1|1~Dovbyk|A|Pc|10|16|10~Piccoli|A|Pc|9|8|23~Enem|A|Pc|3|2|9",
@@ -606,8 +603,7 @@
                 const qti = parseInt(qtiStr, 10);
                 const diff = qta - qti;
                 const fvm = parseInt(fvmStr, 10);
-                const cleanName = nome.trim();
-                playersDB[cleanName] = {
+                playersDB[nome.trim()] = {
                     team, r, rm, qta, qti, diff, fvm,
                     fm: stimaFantamedia(r, qta, diff, fvm)
                 };
@@ -625,33 +621,16 @@
             const diffSign = p.diff > 0 ? `+${p.diff}` : p.diff;
             const opt = document.createElement('option');
             opt.value = player;
-            opt.label = `${p.team} • Ruolo: ${p.r} (${p.rm}) • Qt.A: ${p.qta} (${diffSign}) • FVM: ${p.fvm}`;
+            opt.label = `${p.team} • Ruolo: ${p.r} (${p.rm}) • Qt.A: ${p.qta} (${diffSign})`;
             datalist.appendChild(opt);
         });
 
-        const teamSelects = ['oppA', 'oppB'];
-        const teamNames = Object.keys(teams2627).sort();
-
-        teamSelects.forEach(selId => {
-            const sel = document.getElementById(selId);
-            teamNames.forEach(t => {
-                const opt = document.createElement('option');
-                opt.value = t;
-                opt.textContent = `${t} (${teams2627[t].pos}° class. - Difesa ${teams2627[t].difesa}/10)`;
-                sel.appendChild(opt);
-            });
-        });
-
-        // Test iniziale automatico
+        // Test di default per la 12ª giornata
         document.getElementById('nameA').value = "Rabiot";
         autoFillPlayer('A');
-        document.getElementById('oppA').value = "Bologna";
-        onOppChange('A');
 
-        document.getElementById('nameB').value = "Paz N.";
+        document.getElementById('nameB').value = "Orsolini";
         autoFillPlayer('B');
-        document.getElementById('oppB').value = "Inter";
-        onOppChange('B');
     }
 
     function autoFillPlayer(side) {
@@ -670,32 +649,42 @@
             const diffPill = document.getElementById('diffPill' + side);
             diffPill.className = 'l-pill ' + (p.diff > 0 ? 'pos-diff' : (p.diff < 0 ? 'neg-diff' : ''));
 
-            // Auto-rilevamento trend da Diff.
             const statusSelect = document.getElementById('status' + side);
             if (p.diff >= 4) statusSelect.value = 'fire';
             else if (p.diff <= -3) statusSelect.value = 'cold';
             else statusSelect.value = 'normal';
 
-            // Auto-assegnazione squadra
-            document.getElementById('teamDisplay' + side).value = p.team + ` (${teams2627[p.team].pos}° in classifica)`;
-            
-            // Auto-seleziona un avversario di default diverso dalla propria squadra se possibile
-            const oppSelect = document.getElementById('opp' + side);
-            if (oppSelect.value === p.team) {
-                const otherTeam = Object.keys(teams2627).find(t => t !== p.team);
-                oppSelect.value = otherTeam;
+            // Assegna il match della 12ª giornata in base alla squadra del giocatore
+            const match = schedule12[p.team];
+            const oppSelect = document.getElementById('oppSelect' + side);
+            oppSelect.innerHTML = '';
+
+            if (match) {
+                document.getElementById('teamDisplay' + side).value = `${p.team} vs ${match.opp} (${match.home ? 'In Casa' : 'In Trasferta'})`;
+                
+                const opt = document.createElement('option');
+                opt.value = match.opp;
+                opt.textContent = `Affronta il ${match.opp} (${match.home ? '🏠 In Casa' : '✈️ In Trasferta'})`;
+                oppSelect.appendChild(opt);
+            } else {
+                document.getElementById('teamDisplay' + side).value = `${p.team} (Riposo / Non trovato)`;
             }
-            onOppChange(side);
+            onMatchSelect(side);
         }
     }
 
-    function onOppChange(side) {
-        const oppName = document.getElementById('opp' + side).value;
-        const oData = teams2627[oppName];
-        if (oData) {
-            document.getElementById('autoInfo' + side).innerHTML =
-                `Avversario caricato in automatico: <b>${oppName}</b> (${oData.pos}° in classifica, Indice Difesa: <b>${oData.difesa}/10</b>)`;
-        }
+    function onMatchSelect(side) {
+        const nameInput = document.getElementById('name' + side).value.trim();
+        const foundKey = Object.keys(playersDB).find(k => k.toLowerCase() === nameInput.toLowerCase());
+        if (!foundKey) return;
+
+        const p = playersDB[foundKey];
+        const match = schedule12[p.team];
+        if (!match) return;
+
+        const oData = teams2627[match.opp];
+        document.getElementById('autoInfo' + side).innerHTML =
+            `Partita 12ª Giornata: <b>${p.team} vs ${match.opp}</b> • Avversario (${match.opp}): <b>${oData.pos}° in classifica</b>, Indice Difesa: <b>${oData.difesa}/10</b>`;
     }
 
     function calcolaScoreGiocatore(side) {
@@ -708,11 +697,10 @@
         const teamName = pData.team;
         const tData = teams2627[teamName] || { pos: 5, forma: 7.5, difesa: 7.0 };
 
-        const oppName = document.getElementById('opp' + side).value;
-        const oData = teams2627[oppName] || { pos: 10, forma: 6.5, difesa: 6.5 };
-        const venue = document.getElementById('venue' + side).value;
+        const match = schedule12[teamName] || { opp: 'Inter', home: true };
+        const oData = teams2627[match.opp] || { pos: 10, forma: 6.5, difesa: 6.5 };
+        const venue = match.home ? 'home' : 'away';
 
-        // Algoritmo automatico ponderato
         const fmScore = (fm - 5.0) * 17.5;
         const listoneValueScore = (pData.qta * 0.25) + Math.min(8.0, pData.fvm / 45.0) + (pData.diff * 0.22);
         const teamRankScore = (21 - tData.pos) * 0.45;
@@ -737,7 +725,7 @@
             teamName,
             posTeam: tData.pos,
             formTeam: tData.forma,
-            oppName,
+            oppName: match.opp,
             posOpp: oData.pos,
             defOpp: oData.difesa,
             venue,
@@ -772,10 +760,10 @@
         barB.innerText = `${B.name} ${pctB}%`;
 
         document.getElementById('cmpFM').innerText =
-            `${A.name} (FM ${A.fm.toFixed(2)}, Qt.A ${A.qta}, FVM ${A.fvm}) vs ${B.name} (FM ${B.fm.toFixed(2)}, Qt.A ${B.qta}, FVM ${B.fvm}).`;
+            `${A.name} (FM ${A.fm.toFixed(2)}, Qt.A ${A.qta}) vs ${B.name} (FM ${B.fm.toFixed(2)}, Qt.A ${B.qta}).`;
 
         document.getElementById('cmpOpp').innerText =
-            `Calendario migliore per ${winner.name}: affronta ${winner.oppName} (${winner.posOpp}° in class., difesa ${winner.defOpp}/10).`;
+            `Incrocio 12ª Giornata: ${winner.name} affronta il ${winner.oppName} (${winner.posOpp}° in class., difesa ${winner.defOpp}/10).`;
 
         const diffStrA = A.diff > 0 ? `+${A.diff}` : A.diff;
         const diffStrB = B.diff > 0 ? `+${B.diff}` : B.diff;
@@ -783,7 +771,7 @@
             `${A.teamName} (Forma ${A.formTeam}, Diff. ${diffStrA}) vs ${B.teamName} (Forma ${B.formTeam}, Diff. ${diffStrB}).`;
 
         document.getElementById('cmpContext').innerText =
-            `${A.name} [${A.r}] gioca ${A.venue === 'home' ? 'in casa' : 'in trasferta'} • ${B.name} [${B.r}] gioca ${B.venue === 'home' ? 'in casa' : 'in trasferta'}.`;
+            `${A.name} gioca ${A.venue === 'home' ? 'in casa' : 'in trasferta'} • ${B.name} gioca ${B.venue === 'home' ? 'in casa' : 'in trasferta'}.`;
 
         let reasons = [];
         if (winner.fm >= loser.fm) {
@@ -802,11 +790,11 @@
         }
 
         if (winner.venue === 'home' && loser.venue === 'away') {
-            reasons.push(`gioca con il vantaggio del fattore campo casalingo`);
+            reasons.push(`gioca con il vantaggio del fattore campo casalingo in questo turno`);
         }
 
         document.getElementById('finalExplanation').innerText =
-            `L'algoritmo automatico premia ${winner.name} (${winner.total.toFixed(1)} pt contro ${loser.total.toFixed(1)} pt): ${reasons.join(", ")}.`;
+            `Per la 12ª giornata l'algoritmo premia ${winner.name} (${winner.total.toFixed(1)} pt contro ${loser.total.toFixed(1)} pt): ${reasons.join(", ")}.`;
 
         panel.scrollIntoView({ behavior: 'smooth' });
     }
